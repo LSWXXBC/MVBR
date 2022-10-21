@@ -11,7 +11,6 @@ from torch.utils.data import DataLoader
 import numpy as np
 
 from dataset import Dictionary, VQAFeatureDataset
-import new_model
 import base_model
 from train import train
 import utils
@@ -176,7 +175,7 @@ def main():
 
     # Build the model using the original constructor
     constructor = 'build_%s' % args.model
-    model = getattr(new_model, constructor)(train_dset, args.num_hid).cuda()
+    model = getattr(base_model, constructor)(train_dset, args.num_hid).cuda()
     if dataset=='cpv1':
         model.w_emb.init_embedding('data/glove6b_init_300d_v1.npy')
     elif dataset=='cpv2' or dataset=='v2':
